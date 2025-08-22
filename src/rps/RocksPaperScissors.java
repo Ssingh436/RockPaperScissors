@@ -1,19 +1,20 @@
 package rps;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
 
 
 public class RocksPaperScissors {
-    protected static boolean playAgain = true;
     static String[] options = {"rock", "paper", "scissors"};
+    static boolean playAgain;
 
     public static void main(String[] args) {
         int userChoice = getUserChoice();
         System.out.println(getOutcome(userChoice, getRandChoice()));
-        System.out.println("Would you like to play again? (Y/N): ");
+        playAgain = getPlayAgain();
     }
 
 // Returns user's choice
@@ -50,6 +51,13 @@ public class RocksPaperScissors {
         } else {
             return "Your opponent played " + options[randChoice] + "\nUnfortunately... you lost.";
         }
+    }
+    public static boolean getPlayAgain() {
+        boolean playAgain;
+        System.out.println("Would you like to play again? (Y/N): ");
+        Scanner sc = new Scanner(System.in);
+        playAgain = sc.nextLine().toLowerCase(Locale.ROOT).equals("y");
+        return playAgain;
     }
 }
 
